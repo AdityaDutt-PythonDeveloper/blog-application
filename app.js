@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 dotenv.config();
 import bcrypt from 'bcrypt';
-import User from './models/user.js';
+import User from './models/User.js';
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
 import {verifyToken, checkAuth} from './middleware/auth.js';
