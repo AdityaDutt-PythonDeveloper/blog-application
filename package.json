@@ -1,0 +1,28 @@
+{
+  "name": "blog-application",
+  "version": "1.0.0",
+  "description": "For web dev project",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Aditya Dutt",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.2",
+    "connect-mongo": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.22.0",
+    "nodemon": "^3.1.11",
+    "path": "^0.12.7",
+    "url": "^0.11.4"
+  }
+}

@@ -1,0 +1,792 @@
+/* style.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+}
+
+/* Add floating background shapes */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    width: 300px;
+    height: 300px;
+    background: white;
+    top: -100px;
+    right: -100px;
+    animation: float 6s ease-in-out infinite;
+}
+
+body::after {
+    width: 200px;
+    height: 200px;
+    background: white;
+    bottom: -50px;
+    left: -50px;
+    animation: float 8s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 48px;
+    font-weight: 700;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 50px;
+    animation: fadeInDown 0.8s ease-out;
+    letter-spacing: 1px;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    animation: slideIn 0.5s ease-out;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.post-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.title h3 {
+    color: #333;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+.content {
+    margin-bottom: 25px;
+}
+
+.content p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.actions form {
+    margin: 0;
+}
+
+.actions button {
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.actions form:first-child button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.actions form:first-child button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+
+.actions form:last-child button {
+    background: #f5f5f5;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+}
+
+.actions form:last-child button:hover {
+    background: #e74c3c;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.actions button:active {
+    transform: translateY(0);
+}
+
+hr {
+    display: none;
+}
+
+/* Empty state styling */
+.container:has(.post-card:not(:first-child)) h1 {
+    margin-bottom: 50px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    .post-card {
+        padding: 25px;
+    }
+
+    .title h3 {
+        font-size: 24px;
+    }
+
+    .content p {
+        font-size: 15px;
+    }
+
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .actions form {
+        width: 100%;
+    }
+
+    .actions button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .post-card {
+        padding: 20px;
+    }
+
+    .title h3 {
+        font-size: 20px;
+    }
+}
+
+/* Add a nice loading animation for the posts */
+.post-card:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.post-card:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.post-card:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.post-card:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+/* Additional polish */
+::selection {
+    background: #667eea;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Navbar Styles */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: -20px -20px 20px -20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left a {
+    font-size: 28px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-right {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-right a {
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+.nav-right a:hover {
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Style for logout/login/signup buttons */
+.nav-right a:last-child {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.nav-right a:last-child:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+    }
+
+    .nav-left a {
+        font-size: 24px;
+    }
+
+    .nav-right {
+        width: 100%;
+        margin-top: 15px;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .nav-right a {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 12px 15px;
+    }
+
+    .nav-left a {
+        font-size: 20px;
+    }
+
+    .nav-right {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .nav-right a {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+}
+
+/* Create Post Page Styles */
+.create-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 50px 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.5s ease-out;
+    position: relative;
+}
+
+.create-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    border-radius: 20px 20px 0 0;
+}
+
+.create-container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+#form {
+    width: 100%;
+}
+
+#form label {
+    display: block;
+    color: #555 !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+    margin-left: 0 !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    transition: color 0.3s ease;
+}
+
+.field {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+    outline: none;
+    margin-bottom: 25px;
+}
+
+.field:focus {
+    border-color: #667eea;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+#content {
+    width: 100%;
+    min-height: 300px;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+    outline: none;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+#content:focus {
+    border-color: #667eea;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+#submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+#submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Character counter or helper text (if you add it later) */
+.helper-text {
+    font-size: 13px;
+    color: #999;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .create-container {
+        margin: 30px 20px;
+        padding: 40px 30px;
+    }
+
+    .create-container h1 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .field,
+    #content {
+        font-size: 15px;
+    }
+
+    #content {
+        min-height: 250px;
+    }
+
+    #submit-btn {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .create-container {
+        margin: 20px 15px;
+        padding: 30px 20px;
+    }
+
+    .create-container h1 {
+        font-size: 24px;
+    }
+
+    .field,
+    #content {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+
+    #content {
+        min-height: 200px;
+    }
+
+    #submit-btn {
+        padding: 14px;
+        font-size: 15px;
+    }
+}
+
+/* Focus state for labels */
+.field:focus ~ label,
+#content:focus ~ label {
+    color: #667eea !important;
+}
+
+/* Animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading state for submit button (optional) */
+#submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Placeholder styling */
+.field::placeholder,
+#content::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+.field:focus::placeholder,
+#content:focus::placeholder {
+    opacity: 0.6;
+}
+
+/* Edit Post Page Styles - Add these to your existing style.css */
+
+/* Override inline styles for edit page */
+#title {
+    width: 100% !important;
+    padding: 14px 16px !important;
+    border: 2px solid #e0e0e0 !important;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    transition: all 0.3s ease !important;
+    background: #f9f9f9 !important;
+    outline: none !important;
+    margin-bottom: 25px !important;
+    margin-left: 0 !important;
+    font-weight: 400 !important;
+}
+
+#title:focus {
+    border-color: #667eea !important;
+    background: #fff !important;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Ensure labels are styled consistently */
+form label {
+    display: block !important;
+    color: #555 !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    margin-bottom: 10px !important;
+    margin-left: 0 !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+    transition: color 0.3s ease !important;
+}
+
+/* Edit page specific heading color variation */
+.create-container h1 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Update button specific styling (different from Submit) */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Add a subtle badge/indicator for edit mode */
+.create-container h1::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Form styling */
+form {
+    width: 100%;
+}
+
+/* Textarea styling for edit page */
+form textarea {
+    width: 100%;
+    min-height: 300px;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+    outline: none;
+    resize: vertical;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+form textarea:focus {
+    border-color: #667eea;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* Add some visual feedback for edited content */
+form input:valid,
+form textarea:valid {
+    border-color: #e0e0e0;
+}
+
+form input:focus:valid,
+form textarea:focus:valid {
+    border-color: #667eea;
+}
+
+/* Responsive adjustments for edit page */
+@media (max-width: 768px) {
+    #title {
+        font-size: 15px !important;
+        padding: 12px 14px !important;
+    }
+
+    form textarea {
+        min-height: 250px;
+        font-size: 15px;
+    }
+
+    button[type="submit"] {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    #title {
+        font-size: 14px !important;
+        padding: 12px 14px !important;
+    }
+
+    form textarea {
+        min-height: 200px;
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+
+    button[type="submit"] {
+        padding: 14px;
+        font-size: 15px;
+    }
+
+    form label {
+        font-size: 14px !important;
+    }
+}
+
+/* Loading state for update button */
+button[type="submit"]:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Focus animation for labels */
+#title:focus ~ label,
+#content:focus ~ label {
+    color: #667eea !important;
+}
+
+/* Placeholder styling */
+#title::placeholder,
+form textarea::placeholder {
+    color: #999;
+    opacity: 1;
+}
+
+#title:focus::placeholder,
+form textarea:focus::placeholder {
+    opacity: 0.6;
+}

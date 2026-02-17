@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlogHUB</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+    <%- include('partials/navbar') %>
+    <div class="container">
+
+<h1>Eat, Sleep, Write, Repeat!</h1>
+<br><br>
+<% newPost.forEach(function(item){ %>
+    <div class="post-card">
+        <div class="title">
+            <h3><%= item.title %></h3>
+        </div>
+        <div class="content">
+            <p><%= item.content %></p>
+        </div>
+        
+        <div class="actions">
+            <!-- EDIT -->
+        <form action="/edit/<%= item._id %>" method="GET">
+            <button type="submit" >Edit</button>
+        </form>
+
+        <!-- DELETE -->
+        <form action="/delete/<%= item._id %>" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+        </div>
+        
+    </div>
+    <hr>
+<% }) %>
+
+    </div>
+
+</body>
+</html>

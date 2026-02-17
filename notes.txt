@@ -1,0 +1,61 @@
+ejs can access only those variables which are passed by res.render() 
+HTML forms can support only GET and POST.
+
+Until you introduce method-override (later):
+
+EDIT & DELETE must also use POST
+
+That’s how real apps do it internally.
+
+We use redirect after delete because the data has changed.
+We use render only when we already have the correct data in hand.
+
+Think of it like this:
+
+“For every document in MongoDB, EJS creates a small HTML block.”
+
+That block contains:
+
+Data → item.title, item.content
+
+Actions → /edit/item._id, /delete/item._id
+
+So when you add or delete a post:
+
+The database changes
+
+Homepage re-renders
+
+Loop updates automatically
+
+When you use:
+
+app.use(express.static('public'));
+
+Express treats public as the root for static files.
+
+That means:
+
+File location	URL path
+public/css/style.css	/css/style.css  in linking css files 
+
+👉 You NEVER write /public in the browser path.
+
+HTTP is stateless.
+
+That means:
+
+Request 1 → server forgets
+
+Request 2 → server has no memory
+
+So when a user logs in, how does the server remember them?
+
+👉 Sessions.
+
+A session is:
+
+A small server-side memory linked to a user via a cookie.
+
+JWT Authentication setup:
+To improve security, JWT access tokens will be short-lived. When they expire, the client application can use a valid refresh token to get new access tokens. This prevents the user from having to log in every time the access token expires.
