@@ -160,7 +160,7 @@ app.post('/login', async (req, res)=>{
         );
         res.cookie('token',token, {
             httpOnly:true,
-            secure:false
+            secure:process.env.NODE_ENV==="production", 
         });
         res.redirect('/');
     }catch(error){
